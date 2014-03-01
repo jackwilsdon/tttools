@@ -75,7 +75,10 @@ function hooks.PlayerDeath(victim, weapon, killer)
 	local nice_victim_role = victim_role:fupper()
 	local nice_killer_role = killer_role:fupper()
 
-	print(nice_victim_role, 'killed', nice_killer_role)
+	local action = nice_killer_role .. 'Kill' .. nice_victim_role
+	local name = GetCallNamespace(action)
+
+	hook.Run(name, victim, weapon, killer)
 end
 
 HookTable(hooks)
