@@ -18,9 +18,14 @@
 
 local hook_namespace = 'tttools'
 local namespace_delim = '_'
+local call_namespace = 'TTT'
 
 local function GetNamespace(action)
 	return string.lower(tostring(hook_namespace) .. tostring(namespace_delim) .. tostring(action))
+end
+
+local function GetCallNamespace(action)
+	return tostring(call_namespace) .. tostring(action)
 end
 
 --[[
@@ -47,8 +52,7 @@ local function Hook(action, func, force)
 end
 
 local function HookTable(tbl, force)
-	for action, func in ipairs(tbl) do
-		print("Hooking " .. action)
+	for action, func in pairs(tbl) do
 		Hook(action, func, force)
 	end
 end
